@@ -1,10 +1,17 @@
 interface NavbarItemProps {
   children?: React.ReactNode;
+  className?: string;
 }
 
-const NavbarItem = ({ children }: NavbarItemProps) => {
+const NavbarItem = ({ children, className }: NavbarItemProps) => {
   return (
-    <div className="flex min-w-fit items-center justify-center text-xl">
+    <div
+      className={
+        "flex min-w-fit items-center justify-center sm:text-xl" +
+        " " +
+        className
+      }
+    >
       {children}
     </div>
   );

@@ -4,6 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Layout from "~/components/layout";
 import Navbar from "~/components/navbar";
 import NavbarHeading from "~/components/navbar/heading/index";
 import NavbarItem from "~/components/navbar/item";
@@ -33,60 +34,79 @@ export default function Home() {
         <meta name="description" content="A blog by William." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="children:z-10 relative flex h-screen flex-col">
-        <div
-          className="absolute -bottom-20 end-24 z-0 overflow-hidden p-44"
-          style={{
-            transform: `translate(${cursorPos.x / 20}px, ${
-              cursorPos.y / 20
-            }px)`,
-          }}
-        >
-          <div className=" h-96 w-52 rotate-45 rounded-full bg-gradient-to-br from-purple-500 to-blue-400 opacity-15 blur-3xl"></div>
+      <Layout pageTitle="Home">
+        <div className="ml-8 mr-8 mt-10 flex w-full flex-col items-center justify-center gap-4 rounded-lg">
+          {/* create responsive grid that for the minute shows a list of posts with lorem text */}
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="col-span-1 rounded-lg border p-4">
+              <h3 className="text-xl font-bold">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              </h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
+                rem exercitationem minima commodi dolorum nobis laboriosam
+                maiores harum quia, iure esse ipsam assumenda ullam officia ea
+                dolor. Velit, est nesciunt!
+              </p>
+            </div>
+            <div className="col-span-1 rounded-lg border p-4">
+              <h3 className="text-xl font-bold">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              </h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
+                rem exercitationem minima commodi dolorum nobis laboriosam
+                maiores harum quia, iure esse ipsam assumenda ullam officia ea
+                dolor. Velit, est nesciunt!
+              </p>
+            </div>
+            <div className="col-span-1 rounded-lg border p-4">
+              <h3 className="text-xl font-bold">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              </h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
+                rem exercitationem minima commodi dolorum nobis laboriosam
+                maiores harum quia, iure esse ipsam assumenda ullam officia ea
+                dolor. Velit, est nesciunt!
+              </p>
+            </div>
+            <div className="col-span-1 rounded-lg border p-4">
+              <h3 className="text-xl font-bold">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              </h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
+                rem exercitationem minima commodi dolorum nobis laboriosam
+                maiores harum quia, iure esse ipsam assumenda ullam officia ea
+                dolor. Velit, est nesciunt!
+              </p>
+            </div>
+            <div className="col-span-1 rounded-lg border p-4">
+              <h3 className="text-xl font-bold">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              </h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
+                rem exercitationem minima commodi dolorum nobis laboriosam
+                maiores harum quia, iure esse ipsam assumenda ullam officia ea
+                dolor. Velit, est nesciunt!
+              </p>
+            </div>
+            <div className="col-span-1 rounded-lg border p-4">
+              <h3 className="text-xl font-bold">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              </h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
+                rem exercitationem minima commodi dolorum nobis laboriosam
+                maiores harum quia, iure esse ipsam assumenda ullam officia ea
+                dolor. Velit, est nesciunt!
+              </p>
+            </div>
+          </div>
         </div>
-        <div id="navbarContainer" className="flex w-screen justify-center">
-          <Navbar className="w-full">
-            <NavbarHeading>Will's Blog</NavbarHeading>
-            <NavbarItemGroup>
-              <NavbarItem>
-                <Link href="/posts">Posts</Link>
-              </NavbarItem>
-              <NavbarItem>
-                <Link href="/about">About</Link>
-              </NavbarItem>
-            </NavbarItemGroup>
-            <NavbarItemGroup align="right">
-              <NavbarItemGroup align="right" variant="icon">
-                <NavbarItem>
-                  <Link
-                    href={"https://github.com/willrees23/wills-blog"}
-                    target="_blank"
-                  >
-                    <Button size={"icon"}>
-                      <GitHubLogoIcon className="h-5 w-5" />
-                    </Button>
-                  </Link>
-                </NavbarItem>
-                <NavbarItem>
-                  <ThemeToggle />
-                </NavbarItem>
-              </NavbarItemGroup>
-              <NavbarItem>
-                <Separator orientation="vertical" className="h-8" />
-              </NavbarItem>
-              <NavbarItem>
-                <Link href="/login">Login</Link>
-              </NavbarItem>
-              <NavbarItem>
-                <Link href="/signup">Sign Up</Link>
-              </NavbarItem>
-            </NavbarItemGroup>
-          </Navbar>
-        </div>
-        <div className="">
-          <AuthShowcase />
-        </div>
-      </main>
+      </Layout>
     </>
   );
 }

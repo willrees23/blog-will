@@ -2,6 +2,7 @@ interface NavbarItemGroupProps {
   children?: React.ReactNode;
   align?: "left" | "center" | "right";
   variant?: "default" | "icon";
+  className?: string;
 }
 
 const NavbarItemGroup = (props: NavbarItemGroupProps) => {
@@ -17,11 +18,13 @@ const NavbarItemGroup = (props: NavbarItemGroupProps) => {
   return (
     <div
       className={
-        "ml-8 flex w-full items-center rounded-md text-xl" +
+        "ml-8 flex w-full items-center rounded-md sm:text-xl" +
         " " +
         direction +
         " " +
-        space
+        space +
+        " " +
+        props.className
       }
     >
       {props.children}
