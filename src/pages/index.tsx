@@ -38,6 +38,13 @@ export default function Home() {
         <div className="ml-8 mr-8 mt-10 flex w-full flex-col items-center justify-center gap-4 rounded-lg">
           {/* create responsive grid that for the minute shows a list of posts with lorem text */}
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <Link
+              href={"/posts/create"}
+              className="col-span-1 rounded-lg border p-4 shadow-lg transition-all hover:shadow-zinc-500"
+            >
+              <h3 className="text-xl font-bold">Create post!</h3>
+              <p>Click me to create a new post...</p>
+            </Link>
             <div className="col-span-1 rounded-lg border p-4">
               <h3 className="text-xl font-bold">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -108,41 +115,5 @@ export default function Home() {
         </div>
       </Layout>
     </>
-  );
-}
-
-function AuthShowcase() {
-  const { data: sessionData } = useSession();
-
-  const { data: secretMessage } = api.post.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined },
-  );
-
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl ">
-        {sessionData && (
-          <span className="flex">
-            Logged in as{" "}
-            <Image
-              alt="Profile picture"
-              width={32}
-              height={32}
-              className="ml-5 mr-2 rounded-full"
-              src={sessionData.user?.image as unknown as string}
-            />{" "}
-            {sessionData.user?.name}
-          </span>
-        )}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <Button
-        className="rounded-full px-10 py-3 "
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData ? "Sign out" : "Sign in"}
-      </Button>
-    </div>
   );
 }

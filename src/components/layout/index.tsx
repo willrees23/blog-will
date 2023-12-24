@@ -8,6 +8,8 @@ import NavbarItem from "../navbar/item";
 import NavbarItemGroup from "../navbar/item-group";
 import ThemeToggle from "../theme/theme-toggle";
 import { Button } from "../ui/button";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { api } from "~/utils/api";
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -15,18 +17,22 @@ interface LayoutProps {
 }
 
 const Layout = ({ children, pageTitle }: LayoutProps) => {
+  const { data: sessionData } = useSession();
+
   return (
     <>
       <Head>
-        <title>Will's Blog - {pageTitle}</title>
+        <title>Will's Blog{pageTitle ? " - " + pageTitle : ""}</title>
         <meta name="description" content="A blog by William." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="relative flex flex-col items-center">
         <div id="navbarContainer" className="flex w-screen justify-center">
           <Navbar className="w-full">
-            <NavbarHeading className="text-lg">Will's Blog</NavbarHeading>
-            <NavbarItemGroup className="hidden sm:flex">
+            <NavbarHeading className="text-lg">
+              <Link href={"/"}>Will's Blog</Link>
+            </NavbarHeading>
+            <NavbarItemGroup className="hidden md:flex">
               <NavbarItem>
                 <Link href="/posts">Posts</Link>
               </NavbarItem>
@@ -57,11 +63,22 @@ const Layout = ({ children, pageTitle }: LayoutProps) => {
               <NavbarItem className="hidden sm:flex">
                 <Separator orientation="vertical" className="h-8" />
               </NavbarItem>
-              <NavbarItem className="text-sm">
-                <Link href="/login">Login</Link>
-              </NavbarItem>
+              {sessionData && (
+                <NavbarItem className="text-sm">
+                  <span className="flex text-base">
+                    Logged in as {sessionData.user?.name}
+                  </span>
+                </NavbarItem>
+              )}
               <NavbarItem>
-                <Link href="/signup">Sign Up</Link>
+                <Button
+                  className=" px-5 py-3 "
+                  onClick={
+                    sessionData ? () => void signOut() : () => void signIn()
+                  }
+                >
+                  {sessionData ? "Sign Out" : "Sign In"}
+                </Button>
               </NavbarItem>
             </NavbarItemGroup>
           </Navbar>
